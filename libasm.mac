@@ -1,0 +1,12 @@
+%ifndef LIBASM_MAC
+	%define LIBASM_MAC
+
+	%define	arg_1	RDI
+	%define	arg_2	RSI
+	%define	arg_3	RDX
+	%define	arg_4	RCX
+	%define	arg_5	R8
+	%define	arg_6	R9
+	%define	return	RAX
+
+%endif
