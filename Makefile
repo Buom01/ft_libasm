@@ -23,10 +23,10 @@ bonus: $(OBJ) $(OBJ_BONUS)
 %.o: %.s
 	$(CC) -f elf64 -o $@ $<
 
-$(TESTER): $(NAME)
-	gcc -o $(TESTER) test.c $(NAME)
+$(TESTER): $(NAME) $(TESTER).c
+	gcc -o $(TESTER) $(TESTER).c $(NAME)
 
-test: main
+test: $(TESTER)
 	./$(TESTER)
 
 clean:

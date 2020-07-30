@@ -1,31 +1,34 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_strlen.s                                        :+:      :+:    :+:    #
+#    ft_strcpy.s                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/07/29 13:40:53 by badam             #+#    #+#              #
-#    Updated: 2020/07/29 13:45:09 by badam            ###   ########.fr        #
+#    Created: 2020/07/30 14:06:56 by badam             #+#    #+#              #
+#    Updated: 2020/07/30 14:06:59 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 %include "libasm.mac"
 
-GLOBAL ft_strlen
+GLOBAL ft_strcpy
 
-ft_strlen:
+ft_strcpy:
 	MOV	RAX, arg_1
-	MOV	RBX, 0
+	MOV	RBX, arg_2
 	CMP	RAX, 0
 	JZ	end
-	CMP	BYTE [RAX], 0
+	MOV	BYTE [RAX], 0
+	CMP	RBX, 0
 	JZ	end
 	while_not_null:
+		MOV	RCX, [RBX]
+		MOV	[RAX], RCX
 		ADD	RAX, 1
 		ADD	RBX, 1
-		CMP BYTE [RAX], 0
+		CMP	BYTE [RBX], 0
 		JNZ	while_not_null
 	end:
-		MOV	return, RBX
-		RET
+		MOV	return, arg_1	
+		RET	
