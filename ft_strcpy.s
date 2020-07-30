@@ -6,7 +6,7 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/30 14:06:56 by badam             #+#    #+#              #
-#    Updated: 2020/07/30 14:06:59 by badam            ###   ########.fr        #
+#    Updated: 2020/07/30 19:09:47 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ ft_strcpy:
 	MOV	RBX, arg_2
 	CMP	RAX, 0
 	JZ	end
-	MOV	BYTE [RAX], 0
 	CMP	RBX, 0
 	JZ	end
 	while_not_null:

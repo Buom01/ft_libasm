@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 21:00:25 by badam             #+#    #+#             */
-/*   Updated: 2020/07/30 13:59:24 by badam            ###   ########.fr       */
+/*   Updated: 2020/07/30 19:09:23 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,13 @@ int		main(void)
 	test_ft_strlen("test", 4);
 	test_ft_strlen("Well tested !", 13);
 	test_ft_strlen(NULL, 0);
-	printf("Testing ft_strlen\n");
+	printf("Testing ft_strcpy\n");
 	test_ft_strcpy("");
 	test_ft_strcpy("t");
 	test_ft_strcpy("test");
 	test_ft_strcpy("Well tested !");
+	printf(ft_strcpy(NULL, NULL) ? "Fail !\n" : "OK\n");
+	printf(ft_strcpy(NULL, "Test mem") ? "Fail !\n" : "OK\n");
+	printf(!ft_strcpy("Should not be touched", NULL) ? "Fail !\n" : "OK\n");
 	//++ additionnal NULL tests
 }
