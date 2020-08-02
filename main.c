@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 21:00:25 by badam             #+#    #+#             */
-/*   Updated: 2020/07/30 19:09:23 by badam            ###   ########.fr       */
+/*   Updated: 2020/08/02 23:24:53 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ void	test_ft_strcpy(const char *str)
 	printf("OUT: '%s'\n", ft_strcpy(out, str));
 }
 
+void	test_ft_strcmp(const char *str1, const char *str2)
+{
+	printf("%i", ft_strcmp(str1, str2));
+	printf(":%i\n", strcmp(str1, str2));
+}
+
 int		main(void)
 {
 	printf("Testing ft_strlen\n");
@@ -48,5 +54,14 @@ int		main(void)
 	printf(ft_strcpy(NULL, NULL) ? "Fail !\n" : "OK\n");
 	printf(ft_strcpy(NULL, "Test mem") ? "Fail !\n" : "OK\n");
 	printf(!ft_strcpy("Should not be touched", NULL) ? "Fail !\n" : "OK\n");
-	//++ additionnal NULL tests
+	printf("Testing ft_strcmp\n");
+	test_ft_strcmp("qwerty", "qwertu");
+	test_ft_strcmp("a", "b");
+	test_ft_strcmp("a", "c");
+	test_ft_strcmp("c", "a");
+	test_ft_strcmp("", "a");
+	test_ft_strcmp("a", "");
+	test_ft_strcmp("", "aa");
+	test_ft_strcmp("aa", "");
+	test_ft_strcmp("", "");
 }
