@@ -6,7 +6,7 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/06 05:19:08 by badam             #+#    #+#              #
-#    Updated: 2020/08/06 06:36:02 by badam            ###   ########.fr        #
+#    Updated: 2020/08/06 06:39:33 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ ft_strdup:
 	POP		RBX
 	CMP		return, 0
 	JZ		exit
+	MOV		byte [return], 0
 	MOV		arg_1, return
 	MOV		arg_2, RBX
 	CALL	ft_strcpy
