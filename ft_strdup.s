@@ -6,7 +6,7 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/06 05:19:08 by badam             #+#    #+#              #
-#    Updated: 2020/08/06 05:46:18 by badam            ###   ########.fr        #
+#    Updated: 2020/08/06 06:36:02 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,6 @@ SECTION .TEXT
 
 ft_strdup:
 	MOV		return, 0
-	CMP		arg_1, 0
-	JZ		exit
 	PUSH	arg_1
 	CALL	ft_strlen
 	MOV		arg_1, return
