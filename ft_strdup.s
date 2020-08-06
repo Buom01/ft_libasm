@@ -1,32 +1,39 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_strlen.s                                        :+:      :+:    :+:    #
+#    ft_strdup.s                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/07/29 13:40:53 by badam             #+#    #+#              #
-#    Updated: 2020/08/05 18:03:07 by badam            ###   ########.fr        #
+#    Created: 2020/08/06 05:19:08 by badam             #+#    #+#              #
+#    Updated: 2020/08/06 05:46:18 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 %include "libasm.mac"
 
 SECTION .TEXT
-	GLOBAL ft_strlen
+	EXTERN	malloc
+	EXTERN	ft_strlen
+	EXTERN	ft_strcpy
+	GLOBAL	ft_strdup
 
-ft_strlen:
-	MOV	RAX, arg_1
-	MOV	RBX, 0
-	CMP	RAX, 0
-	JZ	end
-	CMP	BYTE [RAX], 0
-	JZ	end
-	while_not_null:
-		ADD	RAX, 1
-		ADD	RBX, 1
-		CMP BYTE [RAX], 0
-		JNZ	while_not_null
-	end:
-		MOV	return, RBX
+ft_strdup:
+	MOV		return, 0
+	CMP		arg_1, 0
+	JZ		exit
+	PUSH	arg_1
+	CALL	ft_strlen
+	MOV		arg_1, return
+	ADD		arg_1, 1
+	IMUL	arg_1, 8
+	CALL	malloc
+	POP		RBX
+	CMP		return, 0
+	JZ		exit
+	MOV		arg_1, return
+	MOV		arg_2, RBX
+	CALL	ft_strcpy
+	exit:
 		RET
+		

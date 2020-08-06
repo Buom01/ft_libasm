@@ -6,13 +6,14 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/02 23:25:59 by badam             #+#    #+#              #
-#    Updated: 2020/08/02 23:26:02 by badam            ###   ########.fr        #
+#    Updated: 2020/08/05 18:02:45 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 %include "libasm.mac"
 
-GLOBAL ft_strcmp
+SECTION .TEXT
+	GLOBAL ft_strcmp
 
 ft_strcmp:
 	MOV	RAX, arg_1
