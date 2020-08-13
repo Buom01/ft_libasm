@@ -6,13 +6,13 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/02 23:25:59 by badam             #+#    #+#              #
-#    Updated: 2020/08/05 18:02:45 by badam            ###   ########.fr        #
+#    Updated: 2020/08/13 13:49:09 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 %include "libasm.mac"
 
-SECTION .TEXT
+section .text
 	GLOBAL ft_strcmp
 
 ft_strcmp:

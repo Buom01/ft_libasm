@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 18:16:49 by badam             #+#    #+#             */
-/*   Updated: 2020/08/06 20:57:05 by badam            ###   ########.fr       */
+/*   Updated: 2020/08/13 13:54:05 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,14 @@ ssize_t	ft_write(int fd, const void *buf, size_t count);
 ssize_t	ft_read(int fd, void *buf, size_t count);
 char	*ft_strdup(const char *s);
 
-int		ft_list_size(t_list *list);
-void	ft_list_push_front(t_list **alst, t_list *new);
+int		ft_atoi_base(char *str, char *base);
+void	ft_list_push_front(t_list **begin_list, void *data);
+int		ft_list_size(t_list *begin_list);
+void	ft_list_sort(t_list **begin_list, int (*cmp)());
+// (*cmp)(list_ptr->data, other_list_ptr->data);
+void	ft_list_remove_if(t_list **begin_list, void *data_ref,
+			int (*cmp)(), void (*free_fct)(void*));
+// (*cmp)(list_ptr->data, data_ref);
+// (*free_fct)(list_ptr->data);
 
 #endif

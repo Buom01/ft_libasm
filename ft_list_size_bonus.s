@@ -6,13 +6,13 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/06 17:03:06 by badam             #+#    #+#              #
-#    Updated: 2020/08/06 22:54:15 by badam            ###   ########.fr        #
+#    Updated: 2020/08/13 13:48:50 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 %include "libasm.mac"
 
-SECTION .TEXT
+section .text
 	GLOBAL	ft_list_size
 
 ft_list_size:

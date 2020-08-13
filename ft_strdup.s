@@ -6,13 +6,13 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/06 05:19:08 by badam             #+#    #+#              #
-#    Updated: 2020/08/06 06:39:33 by badam            ###   ########.fr        #
+#    Updated: 2020/08/13 13:49:33 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 %include "libasm.mac"
 
-SECTION .TEXT
+section .text
 	EXTERN	malloc
 	EXTERN	ft_strlen
 	EXTERN	ft_strcpy

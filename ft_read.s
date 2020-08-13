@@ -6,13 +6,13 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/05 18:02:34 by badam             #+#    #+#              #
-#    Updated: 2020/08/06 06:13:27 by badam            ###   ########.fr        #
+#    Updated: 2020/08/13 13:48:58 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 %include "libasm.mac"
 
-SECTION .TEXT
+section .text
 	EXTERN	get_errno
 	GLOBAL	ft_read
 

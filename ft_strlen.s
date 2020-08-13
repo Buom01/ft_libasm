@@ -6,13 +6,13 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/29 13:40:53 by badam             #+#    #+#              #
-#    Updated: 2020/08/05 18:03:07 by badam            ###   ########.fr        #
+#    Updated: 2020/08/13 13:49:46 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 %include "libasm.mac"
 
-SECTION .TEXT
+section .text
 	GLOBAL ft_strlen
 
 ft_strlen:
@@ -23,8 +23,8 @@ ft_strlen:
 	CMP	BYTE [RAX], 0
 	JZ	end
 	while_not_null:
-		ADD	RAX, 1
-		ADD	RBX, 1
+		INC	RAX
+		INC	RBX
 		CMP BYTE [RAX], 0
 		JNZ	while_not_null
 	end:
