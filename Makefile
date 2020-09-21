@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/07/24 18:16:00 by badam             #+#    #+#              #
+#    Updated: 2020/09/21 22:07:01 by badam            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME=libasm.a
 NAME_BONUS=libasm_bonus.a
 ASM=nasm
@@ -5,7 +17,7 @@ ASMFLAGS=-f elf64 -Wall -g -F dwarf
 TESTER=main
 TESTER_BONUS=main_bonus
 CC=clang
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror -no-pie -g3 
 SRC= \
 		ft_strlen.s	\
 		ft_strcpy.s	\
@@ -16,10 +28,11 @@ SRC= \
 OBJ=$(SRC:.s=.o)
 SRC_BONUS= \
 		ft_atoi_base_bonus.s		\
+		ft_create_elem_bonus.s		\
 		ft_list_push_front_bonus.s	\
 		ft_list_size_bonus.s		\
-		ft_list_remove_if_bonus.s	
-#		ft_list_sort_bonus.s
+		ft_list_remove_if_bonus.s	\
+		ft_list_sort_bonus.s
 OBJ_BONUS=$(SRC_BONUS:.s=.o)
 
 all: $(NAME)

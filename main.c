@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 21:00:25 by badam             #+#    #+#             */
-/*   Updated: 2020/08/06 06:35:31 by badam            ###   ########.fr       */
+/*   Updated: 2020/09/10 12:47:36 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,12 @@ void	test_ft_strdup(const char *str)
 	char	*dup;
 
 	dup = ft_strdup(str);
-	printf("%s:%s\n\n", dup, str == NULL ? "" : str);  // strdup always malloc
+	if (!dup)
+	{
+		printf("KO: Got NULL\n");
+		return;
+	}
+	printf("`%s`:`%s`\n\n", dup, str == NULL ? "" : str);  // strdup always malloc
 	free(dup);
 }
 
@@ -221,4 +226,5 @@ int		main(void)
 	test_ft_strdup("OK\n");
 	test_ft_strdup("");
 	test_ft_strdup(NULL);
+	test_ft_strdup("Very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string of very very ultra long string string");
 }

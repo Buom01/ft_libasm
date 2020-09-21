@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_strdup.s                                        :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/08/06 05:19:08 by badam             #+#    #+#              #
-#    Updated: 2020/08/13 13:49:33 by badam            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 %include "libasm.mac"
 
 section .text
@@ -24,15 +12,16 @@ ft_strdup:
 	CALL	ft_strlen
 	MOV		arg_1, return
 	ADD		arg_1, 1
-	IMUL	arg_1, 8
 	CALL	malloc
 	POP		RBX
 	CMP		return, 0
 	JZ		exit
-	MOV		byte [return], 0
+	MOV		BYTE [return], 0
 	MOV		arg_1, return
 	MOV		arg_2, RBX
+	PUSH	return
 	CALL	ft_strcpy
+	POP		return
 	exit:
 		RET
 		
