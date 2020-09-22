@@ -38,7 +38,7 @@ ft_list_remove_if:
 		MOV		arg_2, [data_ref]
 		CALL	[compare_fonct]
 		CMP		return, 0
-		JNZ		end_if_remove
+		JNZ		else_if_remove
 			MOV		RAX, [elem]
 			MOV		arg_1, [RAX]
 			CALL	[free_fonct]
@@ -47,11 +47,14 @@ ft_list_remove_if:
 			MOV		RAX, [next_elem]
 			MOV		RBX, [prev_next_ptr]
 			MOV		[RBX], RAX
+
+			JMP		end_if_remove
+		else_if_remove:
+			MOV		RAX, [elem]
+			ADD		RAX, 8
+			MOV		[prev_next_ptr], RAX
 		end_if_remove:
 
-		MOV		RAX, [elem]
-		ADD		RAX, 8
-		MOV		[prev_next_ptr], RAX
 		MOV		RAX, [next_elem]
 		MOV		[elem], RAX
 		JMP		while_elem
