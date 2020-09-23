@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 21:00:25 by badam             #+#    #+#             */
-/*   Updated: 2020/09/21 21:56:44 by badam            ###   ########.fr       */
+/*   Updated: 2020/09/23 17:43:33 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,53 @@
 #include <strings.h>
 #include <string.h>
 #include "libasm.h"
+
+t_list	*create_list(void *ptr1, void *ptr2, void *ptr3, void *ptr4, void *ptr5)
+{
+	t_list	*elem1;
+	t_list	*elem2;
+	t_list	*elem3;
+	t_list	*elem4;
+	t_list	*elem5;
+
+	elem1 = malloc(sizeof(t_list));
+	elem1->data = ptr1;
+	elem1->next = NULL;
+	if (ptr2)
+	{
+		elem2 = malloc(sizeof(t_list));
+		elem2->data = ptr2;
+		elem2->next = NULL;
+		elem1->next = elem2;
+	}
+	if (ptr2 && ptr3)
+	{
+		elem3 = malloc(sizeof(t_list));
+		elem3->data = ptr3;
+		elem3->next = NULL;
+		elem2->next = elem3;
+	}
+	if (ptr2 && ptr3 && ptr4)
+	{
+		elem4 = malloc(sizeof(t_list));
+		elem4->data = ptr4;
+		elem4->next = NULL;
+		elem3->next = elem4;
+	}
+	if (ptr2 && ptr3 && ptr4 && ptr5)
+	{
+		elem5 = malloc(sizeof(t_list));
+		elem5->data = ptr5;
+		elem5->next = NULL;
+		elem4->next = elem5;
+	}
+	return (elem1);
+}
+
+int		alwaystrue()
+{
+	return (1);
+}
 
 int		cmp(char *str1, char *str2)
 {
@@ -26,11 +73,6 @@ int		main(void)
 	t_list	elem1;
 	t_list	elem2;
 	t_list	elem3;
-	t_list	*elem1_p;
-	t_list	*elem2_p;
-	t_list	*elem3_p;
-	t_list	*elem4_p;
-	t_list	*elem5_p;
 	void	*pointer;
 	t_list	*list;
 	
@@ -121,13 +163,13 @@ int		main(void)
 	
 	printf("\n==> Testing ft_create_elem\n\n");
 	pointer = strdup("test");
-	elem1_p = ft_create_elem(pointer);
-	printf("%s:test | %p:(nil)\n", (char*)elem1_p->data, elem1_p->next);
+	list = ft_create_elem(pointer);
+	printf("%s:test | %p:(nil)\n", (char*)list->data, list->next);
 	free(pointer);
-	free(elem1_p);
-	elem1_p = ft_create_elem(NULL);
-	printf("%s:(null) | %p:(nil)\n", (char*)elem1_p->data, elem1_p->next);
-	free(elem1_p);
+	free(list);
+	list = ft_create_elem(NULL);
+	printf("%s:(null) | %p:(nil)\n", (char*)list->data, list->next);
+	free(list);
 
 	printf("\n==> Testing ft_list_push_front\n\n");
 	list = &elem1;
@@ -157,12 +199,8 @@ int		main(void)
 		free(list);
 
 	printf("\n==> Testing ft_list_remove_if\n\n");
-	elem1_p = ft_create_elem(strdup("data"));
-	elem2_p = ft_create_elem(strdup("data2"));
-	elem3_p = ft_create_elem(strdup("data3"));
-	elem1_p->next = elem2_p;
-	elem2_p->next = elem3_p;
-	list = elem1_p;
+	list = create_list(strdup("data"), strdup("data2"), strdup("data3"),
+			NULL, NULL);
 	printf("Initial: %s:data | %s:data2 | %s:data3 | %p:(nil)\n", (char*)list->data, (char*)list->next->data, (char*)list->next->next->data, list->next->next->next);
 	pointer = strdup("data2");
 	ft_list_remove_if(&list, pointer, strcmp, free);
@@ -177,12 +215,8 @@ int		main(void)
 	free(pointer);
 	printf("%p:(nil)\n", list);
 
-	elem1_p = ft_create_elem(strdup("data"));
-	elem2_p = ft_create_elem(strdup("data"));
-	elem3_p = ft_create_elem(strdup("data"));
-	elem1_p->next = elem2_p;
-	elem2_p->next = elem3_p;
-	list = elem1_p;
+	list = create_list(strdup("data"), strdup("data"), strdup("data"),
+			NULL, NULL);
 	printf("Initial: %s:data | %s:data | %s:data | %p:(nil)\n", (char*)list->data, (char*)list->next->data, (char*)list->next->next->data, list->next->next->next);
 	pointer = strdup("data2");
 	ft_list_remove_if(&list, pointer, strcmp, free);
@@ -194,27 +228,22 @@ int		main(void)
 	printf("%p:(nil)\n", list);
 
 	printf("\n==> Testing ft_list_sort\n\n");
-	elem1_p = ft_create_elem(strdup("c"));
-	elem2_p = ft_create_elem(strdup("b"));
-	elem3_p = ft_create_elem(strdup("e"));
-	elem4_p = ft_create_elem(strdup("a"));
-	elem5_p = ft_create_elem(strdup("d"));
-	elem1_p->next = elem2_p;
-	elem2_p->next = elem3_p;
-	elem3_p->next = elem4_p;
-	elem4_p->next = elem5_p;
-	list = elem1_p;
+
+	list = create_list(strdup("a"), strdup("c"), strdup("b"),
+			strdup("d"), strdup("e"));
 	printf("Initial: %s:a | %s:c | %s:b | %s:d | %s:e | %p:(nil)\n", (char*)list->data, (char*)list->next->data, (char*)list->next->next->data, (char*)list->next->next->next->data, (char*)list->next->next->next->next->data, list->next->next->next->next->next);
 	ft_list_sort(&list, cmp);
 	printf("%s:a | %s:b | %s:c | %s:d | %s:e | %p:(nil)\n", (char*)list->data, (char*)list->next->data, (char*)list->next->next->data, (char*)list->next->next->next->data, (char*)list->next->next->next->next->data, list->next->next->next->next->next);
-	free(elem1_p->data);
-	free(elem1_p);
-	free(elem2_p->data);
-	free(elem2_p);
-	free(elem3_p->data);
-	free(elem3_p);
-	free(elem4_p->data);
-	free(elem4_p);
-	free(elem5_p->data);
-	free(elem5_p);
+	ft_list_remove_if(&list, NULL, alwaystrue, free);
+
+	list = create_list(strdup("a"), NULL, NULL, NULL, NULL);
+	printf("\nInitial: %s:a | %p:(nil)\n", (char*)list->data, list->next);
+	ft_list_sort(&list, cmp);
+	printf("%s:a | %p:(nil)\n", (char*)list->data,  list->next);
+	ft_list_remove_if(&list, NULL, alwaystrue, free);
+	
+	list = NULL;
+	printf("\nInitial: %p:(nil)\n", list);
+	ft_list_sort(&list, cmp);
+	printf("%p:(nil)\n", list);
 }

@@ -12,6 +12,10 @@ section .text
 	GLOBAL	ft_list_sort
 
 ft_list_sort:
+	CMP	arg_1, 0
+	JZ	exit
+	CMP	QWORD [arg_1], 0
+	JZ	exit
 	CMP	arg_2, 0
 	JZ	exit
 	MOV [begin_list_ptr], arg_1
