@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 21:00:25 by badam             #+#    #+#             */
-/*   Updated: 2020/09/23 17:43:33 by badam            ###   ########.fr       */
+/*   Updated: 2020/09/23 18:12:15 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 #include <string.h>
 #include "libasm.h"
 
-t_list	*create_list(void *ptr1, void *ptr2, void *ptr3, void *ptr4, void *ptr5)
+t_list	*create_list(void *ptr1, void *ptr2, void *ptr3, void *ptr4, void *ptr5, void *ptr6)
 {
 	t_list	*elem1;
 	t_list	*elem2;
 	t_list	*elem3;
 	t_list	*elem4;
 	t_list	*elem5;
+	t_list	*elem6;
 
 	elem1 = malloc(sizeof(t_list));
 	elem1->data = ptr1;
@@ -53,6 +54,13 @@ t_list	*create_list(void *ptr1, void *ptr2, void *ptr3, void *ptr4, void *ptr5)
 		elem5->data = ptr5;
 		elem5->next = NULL;
 		elem4->next = elem5;
+	}
+	if (ptr2 && ptr3 && ptr4 && ptr5 && ptr6)
+	{
+		elem6 = malloc(sizeof(t_list));
+		elem6->data = ptr6;
+		elem6->next = NULL;
+		elem5->next = elem6;
 	}
 	return (elem1);
 }
@@ -200,7 +208,7 @@ int		main(void)
 
 	printf("\n==> Testing ft_list_remove_if\n\n");
 	list = create_list(strdup("data"), strdup("data2"), strdup("data3"),
-			NULL, NULL);
+			NULL, NULL, NULL);
 	printf("Initial: %s:data | %s:data2 | %s:data3 | %p:(nil)\n", (char*)list->data, (char*)list->next->data, (char*)list->next->next->data, list->next->next->next);
 	pointer = strdup("data2");
 	ft_list_remove_if(&list, pointer, strcmp, free);
@@ -216,7 +224,7 @@ int		main(void)
 	printf("%p:(nil)\n", list);
 
 	list = create_list(strdup("data"), strdup("data"), strdup("data"),
-			NULL, NULL);
+			NULL, NULL, NULL);
 	printf("Initial: %s:data | %s:data | %s:data | %p:(nil)\n", (char*)list->data, (char*)list->next->data, (char*)list->next->next->data, list->next->next->next);
 	pointer = strdup("data2");
 	ft_list_remove_if(&list, pointer, strcmp, free);
@@ -230,13 +238,20 @@ int		main(void)
 	printf("\n==> Testing ft_list_sort\n\n");
 
 	list = create_list(strdup("a"), strdup("c"), strdup("b"),
-			strdup("d"), strdup("e"));
+			strdup("d"), strdup("e"), NULL);
 	printf("Initial: %s:a | %s:c | %s:b | %s:d | %s:e | %p:(nil)\n", (char*)list->data, (char*)list->next->data, (char*)list->next->next->data, (char*)list->next->next->next->data, (char*)list->next->next->next->next->data, list->next->next->next->next->next);
 	ft_list_sort(&list, cmp);
 	printf("%s:a | %s:b | %s:c | %s:d | %s:e | %p:(nil)\n", (char*)list->data, (char*)list->next->data, (char*)list->next->next->data, (char*)list->next->next->next->data, (char*)list->next->next->next->next->data, list->next->next->next->next->next);
 	ft_list_remove_if(&list, NULL, alwaystrue, free);
+	
+	list = create_list(strdup("hello"), strdup("world"), strdup("mjacq"),
+			strdup("2"), strdup("1"), strdup("3"));
+	printf("Initial: %s:hello | %s:world | %s:mjacq | %s:2 | %s:1 | %s:3 | %p:(nil)\n", (char*)list->data, (char*)list->next->data, (char*)list->next->next->data, (char*)list->next->next->next->data, (char*)list->next->next->next->next->data, (char*)list->next->next->next->next->next->data, list->next->next->next->next->next->next);
+	ft_list_sort(&list, cmp);
+	printf("%s:1 | %s:2 | %s:3 | %s:hello | %s:mjacq | %s:world | %p:(nil)\n", (char*)list->data, (char*)list->next->data, (char*)list->next->next->data, (char*)list->next->next->next->data, (char*)list->next->next->next->next->data, (char*)list->next->next->next->next->next->data, list->next->next->next->next->next->next);
+	ft_list_remove_if(&list, NULL, alwaystrue, free);
 
-	list = create_list(strdup("a"), NULL, NULL, NULL, NULL);
+	list = create_list(strdup("a"), NULL, NULL, NULL, NULL, NULL);
 	printf("\nInitial: %s:a | %p:(nil)\n", (char*)list->data, list->next);
 	ft_list_sort(&list, cmp);
 	printf("%s:a | %p:(nil)\n", (char*)list->data,  list->next);
