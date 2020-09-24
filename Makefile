@@ -6,18 +6,18 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 18:16:00 by badam             #+#    #+#              #
-#    Updated: 2020/09/21 22:07:01 by badam            ###   ########.fr        #
+#    Updated: 2020/09/24 13:50:28 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=libasm.a
 NAME_BONUS=libasm_bonus.a
 ASM=nasm
-ASMFLAGS=-f elf64 -Wall -g -F dwarf
+ASMFLAGS=-f elf64 -Wall
 TESTER=main
 TESTER_BONUS=main_bonus
 CC=clang
-CFLAGS=-Wall -Wextra -Werror -no-pie -g3 
+CFLAGS=-Wall -Wextra -Werror -no-pie 
 SRC= \
 		ft_strlen.s	\
 		ft_strcpy.s	\
